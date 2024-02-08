@@ -11,6 +11,7 @@ import SortSelector from "./components/SortSelector";
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
+  sortOrder: string;
 }
 
 function App() {
@@ -56,7 +57,12 @@ function App() {
               console.log(gameQuery.genre + " " + gameQuery.platform);
             }}
           />
-          <SortSelector />
+          <SortSelector
+            sortOrder={gameQuery.sortOrder}
+            onSelectSortOrder={(sortOrder) =>
+              setGameQuery({ ...gameQuery, sortOrder })
+            }
+          />
           <Text>
             Genre: {gameQuery.genre?.name} ({gameQuery.genre?.id})
           </Text>
